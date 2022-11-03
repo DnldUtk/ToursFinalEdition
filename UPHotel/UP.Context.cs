@@ -15,23 +15,27 @@ namespace UPHotel
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class UPEntities2 : DbContext
+    public partial class UPEntitiesOchenMnogo : DbContext
     {
-        public UPEntities2()
-            : base("name=UPEntities2")
+        private static UPEntitiesOchenMnogo _context;
+
+        public static UPEntitiesOchenMnogo GetContext()
         {
-        }
-        private static UPEntities2 _context;
-        public static UPEntities2 GetContext()
-        {
-            if (_context == null) _context = new UPEntities2();
+            if (_context == null) _context = new UPEntitiesOchenMnogo();
             return _context;
         }
+
+        public UPEntitiesOchenMnogo()
+            : base("name=UPEntitiesOchenMnogo")
+        {
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Authorize> Authorizes { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<HotelComment> HotelComments { get; set; }

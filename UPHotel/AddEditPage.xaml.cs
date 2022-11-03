@@ -20,7 +20,7 @@ namespace UPHotel
                 _CurrentHotel = SelectedHotel;
             }
             DataContext = _CurrentHotel;
-            ComboCountries.ItemsSource = UPEntities2.GetContext().Countries.ToList();
+            ComboCountries.ItemsSource = UPEntitiesOchenMnogo.GetContext().Countries.ToList();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -45,11 +45,11 @@ namespace UPHotel
             }
             if (_CurrentHotel.ID_hotel == 0)
             {
-                UPEntities2.GetContext().Hotels.Add(_CurrentHotel);
+                UPEntitiesOchenMnogo.GetContext().Hotels.Add(_CurrentHotel);
             }
             try
             {
-                UPEntities2.GetContext().SaveChanges();
+                UPEntitiesOchenMnogo.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
                 Manager.MngrMainFrame.GoBack();
             }

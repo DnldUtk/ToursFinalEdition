@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище UPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authorize">
+          <Key>
+            <PropertyRef Name="IDuser" />
+          </Key>
+          <Property Name="IDuser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginUser" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordUser" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsManager" Type="bit" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryCode" />
@@ -25,9 +35,9 @@
           <Key>
             <PropertyRef Name="ID_comment" />
           </Key>
-          <Property Name="ID_comment" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_comment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_hotel" Type="int" Nullable="false" />
-          <Property Name="Text" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar" MaxLength="150" />
           <Property Name="Author" Type="nchar" MaxLength="10" />
           <Property Name="creationDate" Type="datetime" />
         </EntityType>
@@ -201,6 +211,7 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище UPModelContainer">
+          <EntitySet Name="Authorize" EntityType="Self.Authorize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelComment" EntityType="Self.HotelComment" Schema="dbo" store:Type="Tables" />
@@ -244,6 +255,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authorize">
+          <Key>
+            <PropertyRef Name="IDuser" />
+          </Key>
+          <Property Name="IDuser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsManager" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryCode" />
@@ -269,9 +290,9 @@
           <Key>
             <PropertyRef Name="ID_comment" />
           </Key>
-          <Property Name="ID_comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_comment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_hotel" Type="Int32" Nullable="false" />
-          <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="creationDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelComment_Hotel" FromRole="HotelComment" ToRole="Hotel" />
@@ -362,7 +383,8 @@
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <End Role="Type" Type="Self.Type" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="UPEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="UPEntitiesOchenMnogo" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authorizes" EntityType="Self.Authorize" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Hotels" EntityType="Self.Hotel" />
           <EntitySet Name="HotelComments" EntityType="Self.HotelComment" />
@@ -437,7 +459,18 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище UPModelContainer" CdmEntityContainer="UPEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UPModelContainer" CdmEntityContainer="UPEntitiesOchenMnogo">
+          <EntitySetMapping Name="Authorizes">
+            <EntityTypeMapping TypeName="UPModel.Authorize">
+              <MappingFragment StoreEntitySet="Authorize">
+                <ScalarProperty Name="IDuser" ColumnName="IDuser" />
+                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="UPModel.Country">
               <MappingFragment StoreEntitySet="Country">

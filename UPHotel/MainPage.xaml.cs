@@ -18,15 +18,22 @@ namespace UPHotel
     /// <summary>
     /// Логика взаимодействия для HotelsPage.xaml
     /// </summary>
-    public partial class HotelsPage : Page
-    {
-        private void HotelsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MngrMainFrame.Navigate(new BookingPage());
-        }
-        public HotelsPage()
+    public partial class MainPage : Page
+    {   private CheckUsers _user;
+        public MainPage(CheckUsers user)
         {
             InitializeComponent();
+            _user = user;
+        }
+
+        private void ToursButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MngrMainFrame.Navigate(new ToursPage(_user));
+        }
+    
+        private void HotelsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MngrMainFrame.Navigate(new HotelPage(_user));
         }
     }
 }

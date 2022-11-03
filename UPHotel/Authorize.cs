@@ -12,14 +12,12 @@ namespace UPHotel
     using System;
     using System.Collections.Generic;
     
-    public partial class HotelComment
+    public partial class Authorize
     {
-        public int ID_comment { get; set; }
-        public int ID_hotel { get; set; }
-        public string Text { get; set; }
-        public string Author { get; set; }
-        public Nullable<System.DateTime> creationDate { get; set; }
-    
-        public virtual Hotel Hotel { get; set; }
+        public int IDuser { get; set; }
+        public string LoginUser { get; set; }
+        public string PasswordUser { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
+        public Nullable<bool> IsManager { get; set; }
     }
 }

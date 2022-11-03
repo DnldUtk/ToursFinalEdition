@@ -10,5 +10,6 @@ namespace UPHotel
     class Manager
     {
         public static Frame MngrMainFrame { get; set; }
+        public static bool IsActualLogIn { get; set; }
     }
 }

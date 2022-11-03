@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2B9EE467-CCD4-47C6-8E33-7E15D254B9B5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>UPHotel</RootNamespace>
     <AssemblyName>UPHotel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -44,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -67,14 +71,28 @@
     <Compile Include="AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddEditToursPage.xaml.cs">
+      <DependentUpon>AddEditToursPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Authorize.cs">
+      <DependentUpon>UP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizePage.xaml.cs">
+      <DependentUpon>AuthorizePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckUsers.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>UP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBConnect1.cs" />
     <Compile Include="Hotel.cs">
       <DependentUpon>UP.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelComment.cs">
       <DependentUpon>UP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelCommentPage.xaml.cs">
+      <DependentUpon>HotelCommentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="HotelImage.cs">
       <DependentUpon>UP.tt</DependentUpon>
@@ -90,6 +108,9 @@
     </Compile>
     <Compile Include="Tour.cs">
       <DependentUpon>UP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ToursPage.xaml.cs">
+      <DependentUpon>ToursPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Type.cs">
       <DependentUpon>UP.tt</DependentUpon>
@@ -110,6 +131,18 @@
       <DependentUpon>UP.edmx</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEditToursPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AuthorizePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HotelCommentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +172,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ToursPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
@@ -177,6 +214,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wonder-day-among-us-14.png" />
+    <None Include="Resources\icons8-among-us-480.png" />
+    <None Include="Resources\eye_slash_visible_hide_hidden_show_icon_145987 %281%29.png" />
+    <None Include="Resources\eye_visible_hide_hidden_show_icon_145988 %281%29.png" />
+    <Resource Include="eye_visible_hide_hidden_show_icon_145988 %281%29.png" />
+    <Resource Include="eye_slash_visible_hide_hidden_show_icon_145987 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="UP.Context.tt">
